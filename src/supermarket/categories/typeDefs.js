@@ -3,13 +3,13 @@ export const userTypeDef = `
     id: Int
     provider: String
     uid: String
-    allow_password_change": String
-    name": String
-    nickname": String
-    image": String
-    email": String
-    created_at": String
-    updated_at": String
+    allow_password_change: String
+    name: String
+    nickname: String
+    image: String
+    email: String
+    created_at: String
+    updated_at: String
   }
   type Response {
     status: String
