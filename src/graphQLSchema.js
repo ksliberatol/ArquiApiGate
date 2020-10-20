@@ -5,33 +5,39 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { mergeSchemas } from './utilities';
 
 import {
+//Logsign
 	userMutations,
 	userQueries,
 	userTypeDef,
-
+//Foro
 	threadMutations,
-  threadQueries,
-  threadTypeDef,
-  entryTypeDef,
-  entryQueries,
-  entryMutations,
-
-  ticketTypeDef,
-  ticketQueries,
-  ticketMutations,
-
- 	examLevelTypeDef,
- 	weekQuizTypeDef,
- 	userQuizTypeDef,
- 	examLevelMutations,
-	weekQuizMutations,
-	userQuizMutations,
+	threadQueries,
+	threadTypeDef,
+	entryTypeDef,
+	entryQueries,
+	entryMutations,
+//Soporte
+	ticketTypeDef,
+	ticketQueries,
+	ticketMutations,
+//Examenes
+	examLevelTypeDef,
+	weekQuizTypeDef,
+	userQuizTypeDef,
 	examLevelQueries,
 	weekQuizQueries,
 	userQuizQueries,
+	examLevelMutations,
+	weekQuizMutations,
+	userQuizMutations,
+//Vocabulario
+	categoryMutations,
+	wordMutations,
+	categoryQueries,
+	wordQueries,
+	categoryTypeDef,
+	wordTypeDef,
 
-  perfilQueries,
-  perfilTypeDef,
 
 
 } from './supermarket/categories/typeDefs';
@@ -42,48 +48,52 @@ import categoryResolvers from './supermarket/categories/resolvers';
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
+	//LogSign
 		userTypeDef,
-
+	//Foro
 		threadTypeDef,
-    entryTypeDef,
-
-    ticketTypeDef,
-
+    	entryTypeDef,
+	//Soporte
+    	ticketTypeDef,
+	//Examenes
 		examLevelTypeDef,
 		weekQuizTypeDef,
 		userQuizTypeDef,
-
-		perfilTypeDef
-
+	//Vocabulario
+		categoryTypeDef,
+		wordTypeDef,
 	],
-	[
+	[ 
+	//Logsign
 		userQueries,
-
+	//Foro
 		threadQueries,
-    entryQueries,
-
-    ticketQueries,
-
+    	entryQueries,
+	//Soporte
+   		ticketQueries,
+	//Examenes
 		examLevelQueries,
 		weekQuizQueries,
 		userQuizQueries,
-
-		 perfilQueries
+	//Vocabulario
+		categoryQueries,
+		wordQueries,
 	],
 	[
+	//LogSign
 		userMutations,
-
+	//Foro
 		threadMutations,
-    entryMutations,
-
-    ticketMutations,
-
+    	entryMutations,
+	//Soporte
+   		ticketMutations,
+	//Examenes
 		examLevelMutations,
 		weekQuizMutations,
 		userQuizMutations,
-
-
-
+	//Vocabulario
+		categoryMutations,
+		wordMutations,
 	]
 );
 

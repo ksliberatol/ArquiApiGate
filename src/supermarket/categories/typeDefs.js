@@ -1,11 +1,19 @@
 export const userTypeDef = `
   type User {
-    status: String
     id: Int
-    name: String
-
-}
-
+    provider: String
+    uid: String
+    allow_password_change": String
+    name": String
+    nickname": String
+    image": String
+    email": String
+    created_at": String
+    updated_at": String
+  }
+  type Response {
+    status: String
+  }
   input UserInput {
 
     email:String
@@ -13,17 +21,24 @@ export const userTypeDef = `
     nickname:String
     password:Int
     password_confirmation:Int
+  }
+  input UserLogInput {
+
+    email:String
+    password:Int
   }`;
 
 export const userQueries = `
       userById(id: Int!): User
+      allUsers: [User]!
   `;
 
 export const userMutations = `
-    createUser(user: UserInput!): User
+    registerUser(user: UserInput!): Response
+    logInUser(user: UserLogInput!): User
 
 `;
-// Foro soporte
+// Foro
 export const threadTypeDef = `
     type Thread{
         _id: String!
@@ -88,7 +103,7 @@ export const entryMutations = `
     updateEntry(id: String!, entry: EntryInput!): Entry!
     deleteEntry(id: String!): String
 `;
-
+// Soporte
 export const ticketTypeDef = `
     type Ticket{
         id: String!
@@ -116,17 +131,37 @@ export const ticketMutations = `
     deleteTicket(id: String!): String
 `;
 // Examenes
+export const userQuizTypeDef = `
+  type UserQuiz {
+      userId: Int
+      idQuiz: Int
+      words: [String]
+      date: String
+      correctWords: [String]
+      score: Int
+  }
+  input UserQuizInput {
+      userId: Int
+      idQuiz: Int
+      words: [String]
+      date: String
+      correctWords: [String]
+      score: Int
+  }`;
+
+export const userQuizQueries = `
+      allUserQuiz: [UserQuiz]
+      userQuizByIdQuiz(body: UserQuizInput): UserQuiz
+      userQuizByUserID(body: UserQuizInput): UserQuiz
+  `;
+
+export const userQuizMutations = `
+    createUserQuiz(body: UserQuizInput): UserQuiz
+    deleteUserQuiz(body: UserQuizInput): UserQuiz
+`;
+
 export const examLevelTypeDef = `
- type ExamLevel {
-    _id: String
-    userId: Int
-    level: String
-    words: [String]
-    date: String
-    correctWords: [String]
-    pass: Boolean
- }
- input ExamLevelInput {
+  type ExamLevel {
      _id: String
      userId: Int
      level: String
@@ -134,91 +169,101 @@ export const examLevelTypeDef = `
      date: String
      correctWords: [String]
      pass: Boolean
- }`;
-
-export const examLevelQueries = `
-     allExamLevels: [ExamLevel]
-     examById(body: ExamLevelInput): ExamLevel
- `;
-
-export const examLevelMutations = `
-   createExam(body: ExamLevelInput): ExamLevel
-   updateExam(body: ExamLevelInput): ExamLevel
-   deleteExam(body: ExamLevelInput): ExamLevel
-`;
-
-
-export const userQuizTypeDef = `
- type UserQuiz {
-     userId: Int
-     idQuiz: Int
-     words:  [String]
-    date: String
-     correctWords: [String]
-     score: Int
- }
- input UserQuizInput {
-     userId: Int
-     idQuiz: Int
-     words: [String]
-     date: String
-     correctWords: [String]
-     score: Int
- }`;
-
- export const userQuizQueries = `
-      allUserQuiz: [UserQuiz]
-      userQuizByIdQuiz(body: UserQuizInput): UserQuiz
-      userQuizByUserID(body: UserQuizInput): UserQuiz
-  `;
-
- export const userQuizMutations = `
-    createUserQuiz(body: UserQuizInput): UserQuiz
-    updateUserQuiz(body: UserQuizInput): UserQuiz
-    deleteUserQuiz(body: UserQuizInput): UserQuiz
- `;
-
-
-export const weekQuizTypeDef = `
- type WeekQuiz {
-     words: [String]
-     date: String
-     active: Boolean
- }
- input WeekQuizInput {
-     words: [String]
-     date: String
-     active: Boolean
- }`;
-
-export const weekQuizQueries = `
-     allWeekQuiz: [WeekQuiz]
-     weekQuizById(body: WeekQuizInput): WeekQuiz
- `;
-
-export const weekQuizMutations = `
-   createWeekQuiz(body: WeekQuizInput): WeekQuiz
-   updateWeekQuiz(body: WeekQuizInput): WeekQuiz
-   deleteWeekQuiz(body: WeekQuizInput): WeekQuiz
-`;
-// Perfiles
-export const perfilTypeDef = `
-  type User2 {
-      id: Int!
-      nombre: String!
-      apellido:String!
-      email: String!
-      password: String!
   }
-  input User2Input {
-    id:Int
-    nombre: String
-    apellido:String
-    email: String
-    password: String
+  input ExamLevelInput {
+      _id: String
+      userId: Int
+      level: String
+      words: [String]
+      date: String
+      correctWords: [String]
+      pass: Boolean
   }`;
 
-export const perfilQueries = `
-      allUser: [User2]!
-      perfilById(id: Int!): User2!
+export const examLevelQueries = `
+      allExamLevels: [ExamLevel]
+      examById(body: ExamLevelInput): ExamLevel
   `;
+
+export const examLevelMutations = `
+    createExam(body: ExamLevelInput): ExamLevel
+    updateExam(body: ExamLevelInput): ExamLevel
+    deleteExam(body: ExamLevelInput): ExamLevel
+`;
+export const weekQuizTypeDef = `
+  type WeekQuiz {
+      idQuiz: Int
+      words: [String]
+      date: String
+      active: Boolean
+  }
+  input WeekQuizInput {
+      idQuiz: Int
+      words: [String]
+      date: String
+      active: Boolean
+  }`;
+
+export const weekQuizQueries = `
+      allWeekQuiz: [WeekQuiz]
+      weekQuizById(body: WeekQuizInput): WeekQuiz
+  `;
+
+export const weekQuizMutations = `
+    createWeekQuiz(body: WeekQuizInput): WeekQuiz
+    updateWeekQuiz(body: WeekQuizInput): WeekQuiz
+    deleteWeekQuiz(body: WeekQuizInput): WeekQuiz
+`;
+
+//Vocabulario
+
+export const categoryTypeDef = `
+  type Category {
+     name: String
+     level: String
+  }
+  input CategoryInput {
+     name: String
+     level: String
+  }`;
+
+export const categoryQueries = `
+      allCategories: [Category]
+      categoryByName(body: CategoryInput): Category
+      categoryByLevel(body: CategoryInput): Category
+  `;
+
+export const categoryMutations = `
+    createCategory(body: CategoryInput): Category
+    updateCategory(body: CategoryInput): Category
+    deleteCategory(body: CategoryInput): Category
+`;
+
+export const wordsTypeDef = `
+  type Words {
+    name: String
+    category: String
+    image: String
+    linkW: String
+    meaning: String
+  }
+  input WordsInput {
+    name: String
+    category: String
+    image: String
+    linkW: String
+    meaning: String
+  }`;
+
+export const wordsQueries = `
+      allWords: [Words]
+      wordsByName(body: WordsInput): Words
+      wordsByCategory(body: WordsInput): Words
+  `;
+
+export const wordsMutations = `
+    createWord(body: WordsInput): Words
+    updateWord(body: WordsInput): Words
+    deleteWord(body: WordsInput): Words
+`;
+
