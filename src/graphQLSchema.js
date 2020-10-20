@@ -32,11 +32,11 @@ import {
 	userQuizMutations,
 //Vocabulario
 	categoryMutations,
-	wordMutations,
+	wordsMutations,
 	categoryQueries,
-	wordQueries,
+	wordsQueries,
 	categoryTypeDef,
-	wordTypeDef,
+	wordsTypeDef,
 
 
 
@@ -61,7 +61,7 @@ const mergedTypeDefs = mergeSchemas(
 		userQuizTypeDef,
 	//Vocabulario
 		categoryTypeDef,
-		wordTypeDef,
+		wordsTypeDef,
 	],
 	[ 
 	//Logsign
@@ -77,7 +77,7 @@ const mergedTypeDefs = mergeSchemas(
 		userQuizQueries,
 	//Vocabulario
 		categoryQueries,
-		wordQueries,
+		wordsQueries,
 	],
 	[
 	//LogSign
@@ -93,7 +93,7 @@ const mergedTypeDefs = mergeSchemas(
 		userQuizMutations,
 	//Vocabulario
 		categoryMutations,
-		wordMutations,
+		wordsMutations,
 	]
 );
 
