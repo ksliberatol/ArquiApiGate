@@ -57,7 +57,7 @@ const resolvers = {
 	//Logsign
 		userById: (_, { id }) =>
 			generalRequest(`${URLLogsign}/users/${id}`, 'GET'),
-		AllUsers: (_) =>
+		allUsers: (_) =>
 			generalRequest(`${URLLogsign}/users/`, 'GET'),
 		
 	// Foro
