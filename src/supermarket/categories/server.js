@@ -36,3 +36,12 @@ export const wordsUrl = 'ec2-3-238-116-24.compute-1.amazonaws.com'
 export const wordsPort = '3001'
 export const wordsEntryPoint = 'words'
 
+//Perfil
+export const nodoPerfiles = 'ec2-34-204-206-79.compute-1.amazonaws.com'
+export const puertoPerfiles = '5002'
+export const allProfiles = 'profiles'
+export const postProfile = 'profiles'
+export const editProfile = 'edit/profile'
+export const editPassword = 'edit/password'
+export const activeProfile = 'active/profile'
+

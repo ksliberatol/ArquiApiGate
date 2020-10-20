@@ -37,7 +37,10 @@ import {
 	wordsQueries,
 	categoryTypeDef,
 	wordsTypeDef,
-
+//Perfiles
+	perfilTypeDef,
+	perfilQueries,
+	perfilMutations,
 
 
 } from './supermarket/categories/typeDefs';
@@ -62,6 +65,9 @@ const mergedTypeDefs = mergeSchemas(
 	//Vocabulario
 		categoryTypeDef,
 		wordsTypeDef,
+	//Perfil
+		perfilTypeDef,
+		
 	],
 	[ 
 	//Logsign
@@ -78,6 +84,8 @@ const mergedTypeDefs = mergeSchemas(
 	//Vocabulario
 		categoryQueries,
 		wordsQueries,
+	//Perfil
+		perfilQueries,
 	],
 	[
 	//LogSign
@@ -94,6 +102,8 @@ const mergedTypeDefs = mergeSchemas(
 	//Vocabulario
 		categoryMutations,
 		wordsMutations,
+	//Perfil
+		perfilMutations,
 	]
 );
 

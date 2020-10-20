@@ -32,6 +32,14 @@ import {
 		wordsUrl,
 		wordsPort,
 		wordsEntryPoint,
+		//Perfil
+		nodoPerfiles,
+		puertoPerfiles, 
+		allProfiles,
+		postProfile,
+		editProfile,
+		editPassword,
+		activeProfile,
 
 
 
@@ -50,7 +58,12 @@ const WQURL = `http://${WQurl}:${WQport}/${WQentryPoint}`;
 //Vocabulario
 const categoryURL = `http://${categoryUrl}:${categoryPort}/${categoryEntryPoint}`;
 const wordsURL = `http://${wordsUrl}:${wordsPort}/${wordsEntryPoint}`;
-
+//Perfiles 
+const URLAllPerfiles = `http://${nodoPerfiles}:${puertoPerfiles}/${allProfiles}`;
+const URLPostPerfiles = `http://${nodoPerfiles}:${puertoPerfiles}/${postProfile}`;
+const URLEditarPerfiles = `http://${nodoPerfiles}:${puertoPerfiles}/${editProfile}`;
+const URLEditarPassword = `http://${nodoPerfiles}:${puertoPerfiles}/${editPassword}`;
+const URLActivarPerfile = `http://${nodoPerfiles}:${puertoPerfiles}/${activeProfile}`;
 
 const resolvers = {
 	Query: {
@@ -112,6 +125,11 @@ const resolvers = {
 			generalRequest(`${wordsURL}/word`, 'GET', body),
 		wordsByCategory: (_, { body }) =>
 			generalRequest(`${wordsURL}/categoryWord`, 'GET', body),
+	//Perfil
+		allPerfiles: (_) =>
+			getRequest(URLAllPerfiles, ''),
+		profileById: (_, { id }) =>
+			generalRequest(`${URLPostPerfiles}/${id}`, 'GET'),
 
 
 	},
@@ -177,7 +195,17 @@ const resolvers = {
 		updateWord: (_, { body }) =>
 			generalRequest(`${wordsURL}/updateWord`, 'PUT', body),
 		deleteWord: (_, { body }) =>
-			generalRequest(`${wordsURL}/deleteWord`, 'DELETE', body)
+			generalRequest(`${wordsURL}/deleteWord`, 'DELETE', body),
+	//Perfil
+		createProfile: (_, { perfil }) =>
+			generalRequest(`${URLPostPerfiles}/`, 'POST', perfil),
+		updateProfile: (_, { id, perfil }) =>
+			generalRequest(`${URLEditarPerfiles}/${id}`, 'PUT', perfil),
+		updateProfilePassword: (_, { id, perfil }) =>
+			generalRequest(`${URLEditarPassword}/${id}`, 'PUT', perfil),
+		deleteProfile: (_, { id ,perfil }) =>
+			generalRequest(`${URLActivarPerfile}/${id}`, 'PUT', perfil),
+
 			 
 }
 
