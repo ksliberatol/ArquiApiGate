@@ -23,13 +23,13 @@ input UserInput {
   email:String
   name:String
   nickname:String
-  password:Int
-  password_confirmation:Int
+  password:String
+  password_confirmation:String
 }
 input UserLogInput {
 
   email:String
-  password:Int
+  password:String
 }`;
 
 export const userQueries = `
