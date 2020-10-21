@@ -1,32 +1,36 @@
 export const userTypeDef = `
-  type User {
-    id: Int
-    provider: String
-    uid: String
-    allow_password_change: String
-    name: String
-    nickname: String
-    image: String
-    email: String
-    created_at: String
-    updated_at: String
-  }
-  type Response {
-    status: String
-  }
-  input UserInput {
+type data {
+  id: Int
+  provider: String
+  uid: String
+  allow_password_change: String
+  name: String
+  nickname: String
+  image: String
+  email: String
+  created_at: String
+  updated_at: String
+}
+type User {
+  data: data
+}
+type Response {
+  status: String
+  data:data
+}
+input UserInput {
 
-    email:String
-    name:String
-    nickname:String
-    password:Int
-    password_confirmation:Int
-  }
-  input UserLogInput {
+  email:String
+  name:String
+  nickname:String
+  password:Int
+  password_confirmation:Int
+}
+input UserLogInput {
 
-    email:String
-    password:Int
-  }`;
+  email:String
+  password:Int
+}`;
 
 export const userQueries = `
       userById(id: Int!): User
