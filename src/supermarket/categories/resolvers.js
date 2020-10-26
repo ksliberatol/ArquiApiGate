@@ -98,19 +98,19 @@ const resolvers = {
 		allUserQuiz: (_) =>
 			getRequest(`${UQURL}/userQuizes`, ''),
 		userQuizByIdQuiz: (_, { body }) =>
-			generalRequest(`${UQURL}/usersQuizes`, 'GET', body),
+			getRequest(`${URL}/usersQuizes`, '', body),
 		userQuizByUserID: (_, { body }) =>
-			generalRequest(`${UQURL}/quizOfUser`, 'GET', body),
+			getRequest(`${URL}/quizOfUser`, '', body),
 
 		allExamLevels: (_) =>
 			getRequest(`${ExamURL}/AllExams`, ''),
 		examById: (_, { body }) =>
-			generalRequest(`${ExamURL}/userExamLevel`, 'GET',body),
+			getRequest(`${URL}/userExamLevel`, '',body),
 
 		allWeekQuiz: (_) =>
 			getRequest(`${WQURL}/Quizes`, ''),
 		weekQuizById: (_, { body }) =>
-			generalRequest(`${WQURL}/thisWeekQuiz`, 'GET', body),
+			getRequest(`${URL}/thisWeekQuiz`, '', body),
 	//Vocabulario
 		allCategories: (_) =>
 			getRequest(`${categoryURL}/AllCategories`, ''),

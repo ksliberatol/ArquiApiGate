@@ -15,15 +15,15 @@ export const portTicket = '8080'
 export const entryPointTicket = 'api/Ticket'
 
 //Exams
-export const UQurl = 'ec2-18-207-135-198.compute-1.amazonaws.com'
+export const UQurl = 'ec2-52-91-75-7.compute-1.amazonaws.com'
 export const UQport = '3000'
 export const UQentryPoint = 'userQuiz'
 
-export const Examurl = 'ec2-18-207-135-198.compute-1.amazonaws.com'
+export const Examurl = 'ec2-52-91-75-7.compute-1.amazonaws.com'
 export const Examport = '3000'
 export const ExamentryPoint = 'examLevel'
 
-export const WQurl = 'ec2-18-207-135-198.compute-1.amazonaws.com'
+export const WQurl = 'ec2-52-91-75-7.compute-1.amazonaws.com'
 export const WQport = '3000'
 export const WQentryPoint = 'weekQuiz'
 

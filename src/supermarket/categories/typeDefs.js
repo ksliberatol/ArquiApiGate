@@ -1,4 +1,16 @@
 export const userTypeDef = `
+type aUser {
+  id: Int
+  provider: String
+  uid: String
+  allow_password_change: String
+  name: String
+  nickname: String
+  image: String
+  email: String
+  created_at: String
+  updated_at: String
+}
 type data {
   id: Int
   provider: String
@@ -34,7 +46,7 @@ input UserLogInput {
 
 export const userQueries = `
       userById(id: Int!): User
-      allUsers: [User]!
+      allUsers: [aUser]!
   `;
 
 export const userMutations = `
