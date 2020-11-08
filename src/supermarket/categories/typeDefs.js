@@ -14,7 +14,7 @@ input SessionInput {
 input UserInput {
   email : String!,
   name: String!,
-nickname: String,	
+nickname: String,
 password : String!,
 password_confirmation: String!
 }
@@ -33,6 +33,7 @@ type sessionData {
   type: String!
   client: String!
   uid: String!
+  error: String
 }
 `;
 
@@ -301,16 +302,15 @@ export const perfilTypeDef = `
       ubicacion: String
       descripcion: String
   }`;
- 
+
 export const perfilQueries = `
       allPerfiles: [Perfil!]
       profileById(id: Int!): Perfil!
   `;
- 
+
 export const perfilMutations = `
     createProfile(perfil: PerfilInput!): String!
     updateProfile(id: Int!, perfil: PerfilInput!): String!
     updateProfilePassword(id: Int!, perfil: PerfilInput!): String!
     deleteProfile(id: Int!, perfil: PerfilInput!): String!
 `;
- 

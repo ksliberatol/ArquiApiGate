@@ -13,8 +13,8 @@ import {
 		portTicket,
 		entryPointTicket,
 		//Examenes
-		UQurl, 
-		UQport, 
+		UQurl,
+		UQport,
 		UQentryPoint,
 
 		Examurl,
@@ -25,8 +25,8 @@ import {
 		WQport,
 		WQentryPoint,
 		//Vocabulario
-		categoryUrl, 
-		categoryPort, 
+		categoryUrl,
+		categoryPort,
 		categoryEntryPoint,
 
 		wordsUrl,
@@ -34,7 +34,7 @@ import {
 		wordsEntryPoint,
 		//Perfil
 		nodoPerfiles,
-		puertoPerfiles, 
+		puertoPerfiles,
 		allProfiles,
 		postProfile,
 		editProfile,
@@ -58,7 +58,7 @@ const WQURL = `http://${WQurl}:${WQport}/${WQentryPoint}`;
 //Vocabulario
 const categoryURL = `http://${categoryUrl}:${categoryPort}/${categoryEntryPoint}`;
 const wordsURL = `http://${wordsUrl}:${wordsPort}/${wordsEntryPoint}`;
-//Perfiles 
+//Perfiles
 const URLAllPerfiles = `http://${nodoPerfiles}:${puertoPerfiles}/${allProfiles}`;
 const URLPostPerfiles = `http://${nodoPerfiles}:${puertoPerfiles}/${postProfile}`;
 const URLEditarPerfiles = `http://${nodoPerfiles}:${puertoPerfiles}/${editProfile}`;
@@ -152,13 +152,20 @@ const resolvers = {
 			return new Promise((resolve, reject) => {
 				generalRequest(`${URLLogsign}/auth/sign_in`, 'POST', session, true).then(
 					(response) => {
-						if(response["StatusCode"]<300){
-						//console.log("Server response => ", response);
-						user['token'] = "nononononono"
-						user['uid'] = "nononononono"
-						user['type'] = "nononononono"
-						user['client'] = "nononononono"
-						resolve(user);
+						if(response.statusCode>300){
+						let user ={
+						  id: -1,
+						  email: "",
+						  name: "",
+						  nickname: "",
+						  image: "",
+						  token: "",
+						  type: "",
+						  client:"",
+						  uid: "",
+						  error : response.error.errors[0]
+						}
+						resolve(user)
 						}else{
 						//console.log("Server response => ", response);
 						let user = response.body.data
@@ -222,7 +229,7 @@ const resolvers = {
 			generalRequest(`${ExamURL}/completeExamLevel`, 'PUT', body),
 		deleteExam: (_, { body }) =>
 			generalRequest(`${ExamURL}/deleteExamLevel`, 'DELETE', body),
-		
+
 		createWeekQuiz: (_, { body }) =>
 			generalRequest(`${WQURL}/newQuiz`, 'POST', body),
 		updateWeekQuiz: (_, { body }) =>
@@ -254,7 +261,7 @@ const resolvers = {
 		deleteProfile: (_, { id ,perfil }) =>
 			generalRequest(`${URLActivarPerfile}/${id}`, 'PUT', perfil),
 
-			 
+
 }
 
 };
