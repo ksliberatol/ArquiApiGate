@@ -1,44 +1,28 @@
 export const userTypeDef = `
-type aUser {
-  id: Int
-  provider: String
-  uid: String
-  allow_password_change: String
-  name: String
-  nickname: String
-  image: String
-  email: String
-  created_at: String
-  updated_at: String
-}
-type data {
-  id: Int
-  provider: String
-  uid: String
-  allow_password_change: String
-  name: String
-  nickname: String
-  image: String
-  email: String
-  created_at: String
-  updated_at: String
-}
 type User {
-  data: data
+  id: Int!
+  email: String!
+  provider: String!
+  name: String!
+  nickname: String!
+  image: String
 }
-type Response {
-  status: String
-  data:data
+input SessionInput {
+  email: String!
+  password: String!
 }
 input UserInput {
-
-  email:String
-  name:String
-  nickname:String
-  password:String
-  password_confirmation:String
+  email : String!,
+  name: String!,
+nickname: String!,	
+password : String!,
+password_confirmation: String!
 }
-
+input Headers {
+  token: String!
+  client: String!
+  uid: String!
+}
 type sessionData {
   id: Int!
   email: String!
@@ -50,20 +34,15 @@ type sessionData {
   client: String!
   uid: String!
 }
-input SessionInput {
-  email: String!
-  password: String!
-}
 `;
 
 export const userQueries = `
-      userById(id: Int!): User
-      allUsers: [aUser]!
+  validateToken(headers: Headers!): sessionData!
   `;
 
 export const userMutations = `
-    registerUser(user: UserInput!): Response
-    logInUser(session: SessionInput!): sessionData!
+  logInUser(session: SessionInput!): sessionData!
+  registerUser(user: UserInput!): sessionData!
 
 `;
 // Foro
