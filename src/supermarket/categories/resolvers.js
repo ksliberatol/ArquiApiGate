@@ -152,13 +152,22 @@ const resolvers = {
 			return new Promise((resolve, reject) => {
 				generalRequest(`${URLLogsign}/auth/sign_in`, 'POST', session, true).then(
 					(response) => {
-						console.log("Server response => ", response);
+						if(response["StatusCode"]<300){
+						//console.log("Server response => ", response);
+						user['token'] = "nononononono"
+						user['uid'] = "nononononono"
+						user['type'] = "nononononono"
+						user['client'] = "nononononono"
+						resolve(user);
+						}else{
+						//console.log("Server response => ", response);
 						let user = response.body.data
 						user['token'] = response.headers['access-token']
 						user['uid'] = response.headers['uid']
 						user['type'] = response.headers['token-type']
 						user['client'] = response.headers['client']
 						resolve(user);
+						}
 					}
 				)
 			})
