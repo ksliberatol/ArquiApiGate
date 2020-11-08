@@ -38,11 +38,23 @@ input UserInput {
   password:String
   password_confirmation:String
 }
-input UserLogInput {
 
-  email:String
-  password:String
-}`;
+type sessionData {
+  id: Int!
+  email: String!
+  name: String!
+  nickname: String!
+  image: String
+  token: String!
+  type: String!
+  client: String!
+  uid: String!
+}
+input SessionInput {
+  email: String!
+  password: String!
+}
+`;
 
 export const userQueries = `
       userById(id: Int!): User
@@ -51,7 +63,7 @@ export const userQueries = `
 
 export const userMutations = `
     registerUser(user: UserInput!): Response
-    logInUser(user: UserLogInput!): User
+    logInUser(session: SessionInput!): sessionData!
 
 `;
 // Foro

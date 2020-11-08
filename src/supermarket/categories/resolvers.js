@@ -137,11 +137,9 @@ const resolvers = {
 	//LogSign
 		registerUser: (_, { user }) =>
 			generalRequest(`${URLLogsign}/auth/`, 'POST', user),
-		logInUser: (_, { user }) =>
-			generalRequest(`${URLLogsign}/auth/sign_in`, 'POST', user),
-		createSession: (_, { session }) => {
+		logInUser: (_, { session }) => {
 			return new Promise((resolve, reject) => {
-				generalRequest(`${URLLogsign}/auth/prueba`, 'POST', session, true).then(
+				generalRequest(`${URLLogsign}/auth/sign_in`, 'POST', session, true).then(
 					(response) => {
 						console.log("Server response => ", response);
 						let user = response.body.data
