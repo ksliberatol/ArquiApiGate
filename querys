@@ -1,19 +1,24 @@
 mutation {
   registerUser(user: {
-    email: "Fdeta00@gmail.com"
-    name: "fulanito"
-    nickname: "fnito"
-    password:"123456"
-    password_confirmation:"123456"
-    
+  email: "albertico@hotmail.com"
+	name: "alberto"
+	nickname: "beto"
+	password: "123456"
+	password_confirmation: "123456"
   }) {
-    status
-    data {
-      id
-      
-      
-    }
+    id
+    email
+    name
+    nickname
+    image
+    token
+    type
+    client
+    uid
+    
   }
 }
+
+
 
 

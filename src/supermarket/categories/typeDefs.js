@@ -14,7 +14,7 @@ input SessionInput {
 input UserInput {
   email : String!,
   name: String!,
-nickname: String!,	
+nickname: String,	
 password : String!,
 password_confirmation: String!
 }
