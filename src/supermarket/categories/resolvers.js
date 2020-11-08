@@ -139,6 +139,21 @@ const resolvers = {
 			generalRequest(`${URLLogsign}/auth/`, 'POST', user),
 		logInUser: (_, { user }) =>
 			generalRequest(`${URLLogsign}/auth/sign_in`, 'POST', user),
+		createSession: (_, { session }) => {
+			return new Promise((resolve, reject) => {
+				generalRequest(`${URLLogsign}/auth/prueba`, 'POST', session, true).then(
+					(response) => {
+						console.log("Server response => ", response);
+						let user = response.body.data
+						user['token'] = response.headers['access-token']
+						user['uid'] = response.headers['uid']
+						user['type'] = response.headers['token-type']
+						user['client'] = response.headers['client']
+						resolve(user);
+					}
+				)
+			})
+		},
 
 	// Foro
 		createThread: (_, { thread }) =>

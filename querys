@@ -1,0 +1,19 @@
+mutation {
+  registerUser(user: {
+    email: "Fdeta00@gmail.com"
+    name: "fulanito"
+    nickname: "fnito"
+    password:"123456"
+    password_confirmation:"123456"
+    
+  }) {
+    status
+    data {
+      id
+      
+      
+    }
+  }
+}
+
+
