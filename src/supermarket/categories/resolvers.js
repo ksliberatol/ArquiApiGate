@@ -148,7 +148,90 @@ const resolvers = {
 	},
 	Mutation: {
 	//LogSign
-		logInUser: (_, { session }) => {
+	logInUser: (_, { session }) => {
+		return new Promise((resolve, reject) => {
+			generalRequest(`${URLLogsign}/ldap`, 'POST', session, true).then(
+				(response) => {
+					console.log(response.body.answer);
+					if (response.body.answer == "false"){
+						console.log("elifdel false");
+						let user ={
+							id: -1,
+							email: "",
+							name: "",
+							nickname: "",
+							image: "",
+							token: "",
+							type: "",
+							client:"",
+							uid: "",
+							error : "error en validacion de credenciales"
+						}
+						resolve(user)
+					}else{
+						console.log("validacion eldab");
+						resolve(1)
+
+
+					}
+				}
+			)
+		}).then(function(result){
+			//console.log("validacion then");
+			console.log(result);
+			if (result != 1){
+				//resolve(result)
+				return result
+			}else{ console.log("sending else");
+			console.log(session);
+
+				return new Promise((resolve, reject) => {
+					generalRequest(`${URLLogsign}/auth/sign_in`, 'POST', session, true).then(
+						(response) => {
+							console.log(response.statusCode);
+							if(response.statusCode>300){
+
+							let user ={
+								id: -1,
+								email: "",
+								name: "",
+								nickname: "",
+								image: "",
+								token: "",
+								type: "",
+								client:"",
+								uid: "",
+								error : response.error.errors[0]
+							}
+							resolve(user)
+							}else{
+
+							//console.log("Server response => ", response);
+							let user = response.body.data
+							user['token'] = response.headers['access-token']
+							user['uid'] = response.headers['uid']
+							user['type'] = response.headers['token-type']
+							user['client'] = response.headers['client']
+							resolve(user);
+							}
+						}
+					)
+				})
+
+
+		}
+
+		})
+
+	},
+
+
+
+
+
+
+
+		logInUser_1: (_, { session }) => {
 			return new Promise((resolve, reject) => {
 				generalRequest(`${URLLogsign}/auth/sign_in`, 'POST', session, true).then(
 					(response) => {

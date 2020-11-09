@@ -42,8 +42,9 @@ export const userQueries = `
   `;
 
 export const userMutations = `
-  logInUser(session: SessionInput!): sessionData!
+  logInUser_1(session: SessionInput!): sessionData!
   registerUser(user: UserInput!): sessionData!
+  logInUser(session: SessionInput!): sessionData!
 
 `;
 // Foro
