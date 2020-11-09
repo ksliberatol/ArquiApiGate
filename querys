@@ -19,6 +19,26 @@ mutation {
   }
 }
 
+mutation {
+  logInUserLdap(session: {
+  email: "albertico@hotmail.com"
+	password: "123456"
+  }) {
+    id
+    email
+    name
+    nickname
+    image
+    token
+    type
+    client
+    uid
+    error
+    
+  }
+}
+
+
 
 
 
